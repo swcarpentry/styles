@@ -1,0 +1,19 @@
+image:
+  name: carpentries/lesson-docker:latest
+  entrypoint: [""]
+
+variables:
+  LC_ALL: "C.UTF-8"
+  MAKEFLAGS: "-j 8"
+  JEKYLL_ENV: "production"
+
+pages:
+  stage: deploy
+  script:
+      - make site
+      - mv _site public
+  artifacts:
+      paths:
+          - public
+  only:
+      - gh-pages
